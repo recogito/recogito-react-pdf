@@ -1,0 +1,31 @@
+{
+  "name": "@recogito/recogito-pdf",
+  "version": "0.1.0",
+  "description": "A JavaScript PDF viewer with annotation functionality, powered by PDF.js and RecogitoJS",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "webpack serve  --mode development --open",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/recogito/recogito-pdf.git"
+  },
+  "keywords": [
+    "Annotation",
+    "PDF",
+    "RecogitoJS"
+  ],
+  "author": "Rainer Simon",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/recogito/recogito-pdf/issues"
+  },
+  "homepage": "https://github.com/recogito/recogito-pdf#readme",
+  "devDependencies": {
+    "html-webpack-plugin": "^5.3.2",
+    "webpack": "^5.52.1",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.2.1"
+  }
+}
