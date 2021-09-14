@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import PDFViewer from './pdf/PDFViewer';
+
+const URL = 'compressed.tracemonkey-pldi-09.pdf';
 
 window.onload = function() {
 
   ReactDOM.render(
-    <App />,
+    <PDFViewer url={URL} />,
     document.getElementById('app')
   );
     

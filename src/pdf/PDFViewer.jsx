@@ -3,6 +3,8 @@ import * as PDFJS from 'pdfjs-dist/webpack';
 
 import AnnotatablePage from './AnnotatablePage';
 
+import './PDFViewer.css';
+
 const PDFViewer = props => {
 
   const [ pdf, setPdf ] = useState();

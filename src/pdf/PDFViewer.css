@@ -1,0 +1,11 @@
+.page-container {
+  position:relative;
+}
+
+.textLayer.debug {
+  opacity:1;
+}
+
+.textLayer.debug span {
+  color:red;
+}
