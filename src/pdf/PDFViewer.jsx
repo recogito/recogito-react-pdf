@@ -8,6 +8,8 @@ const PDFViewer = props => {
 
   const [ pdf, setPdf ] = useState();
 
+  const [ pageNumber, setPageNumber ] = useState(1);
+
   useEffect(() => {
     // Load document
     PDFJS.getDocument(props.url).promise.then(pdf => { 
@@ -19,37 +21,36 @@ const PDFViewer = props => {
   }, []);
 
   useEffect(() => {
+    if (pdf) {
+      pdf.getPage(pageNumber).then(function(page) {          
+        const scale = 1.5;
+        const viewport = page.getViewport({ scale });
 
-  }, [ props.page ]);
+        // Prepare canvas using PDF page dimensions
+        const canvas = document.createElement('canvas');
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+        containerEl.current.appendChild(canvas);
 
-  /*
-    pdf.getPage(pageNumber).then(function(page) {          
-      const scale = 1.5;
-      const viewport = page.getViewport({ scale });
+        // Render PDF page into canvas context
+        const renderContext = {
+          canvasContext: canvas.getContext('2d'),
+          viewport
+        };
 
-      // Prepare canvas using PDF page dimensions
-      const canvas = document.createElement('canvas');
-      canvas.height = viewport.height;
-      canvas.width = viewport.width;
-      document.getElementById('app').appendChild(canvas);
-
-      // Render PDF page into canvas context
-      const renderContext = {
-        canvasContext: canvas.getContext('2d'),
-        viewport
-      };
-
-      page.render(renderContext).promise.then(function () {
-        console.log('Page rendered');
+        page.render(renderContext).promise.then(function () {
+          console.log('Page rendered');
+        });
       });
-      
-    });
-  */
+    }
+  }, [ pdf, pageNumber ]);
 
   return (
     <div 
       ref={containerEl}
-      className="pdf-viewer-container"></div>
+      className="pdf-viewer-container">
+      
+    </div>
   )
 
 }
