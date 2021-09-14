@@ -11,6 +11,19 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     clean: true
   },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
+  module: {
+    rules: [
+      { 
+        test: /\.(js|jsx)$/, 
+        use: { 
+          loader: 'babel-loader'
+        }
+      }
+    ]
+  },
   devtool: 'source-map',
   devServer: {
     static: './public',
