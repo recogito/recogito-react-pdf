@@ -14,7 +14,7 @@
   opacity:1;
 }
 
-.textLayer.debug span {
+.page-container.debug .textLayer span {
   color:red;
 }
 

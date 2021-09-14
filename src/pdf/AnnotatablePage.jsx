@@ -51,16 +51,16 @@ const AnnotatablePage = props => {
           container: containerEl.current.querySelector('.textLayer'),
           viewport: viewport,
           textDivs: []
-        }).promise.then(() => {
-          // Do nothing
         });
       });
     }
   }, [ props.page ]);
 
   return (
-    <div ref={containerEl} className="page-container">
-      <div className={props.debug ? 'textLayer debug' : 'textLayer'} />
+    <div
+      ref={containerEl} 
+      className={props.debug ? 'page-container debug' : 'page-container'}>
+      <div className="textLayer" />
     </div>
   )
 
