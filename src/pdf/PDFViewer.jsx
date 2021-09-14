@@ -1,14 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import * as PDFJS from 'pdfjs-dist/webpack';
 
-const PDFJS = require('pdfjs-dist/webpack');
+import AnnotatablePage from './AnnotatablePage';
 
 const PDFViewer = props => {
-  
-  const containerEl = useRef();
 
   const [ pdf, setPdf ] = useState();
 
-  const [ pageNumber, setPageNumber ] = useState(1);
+  const [ page, setPage ] = useState();
 
   useEffect(() => {
     // Load document
@@ -22,34 +21,17 @@ const PDFViewer = props => {
 
   useEffect(() => {
     if (pdf) {
-      pdf.getPage(pageNumber).then(function(page) {          
-        const scale = 1.5;
-        const viewport = page.getViewport({ scale });
+      const pageNumber = 1;
 
-        // Prepare canvas using PDF page dimensions
-        const canvas = document.createElement('canvas');
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-        containerEl.current.appendChild(canvas);
-
-        // Render PDF page into canvas context
-        const renderContext = {
-          canvasContext: canvas.getContext('2d'),
-          viewport
-        };
-
-        page.render(renderContext).promise.then(function () {
-          console.log('Page rendered');
-        });
+      pdf.getPage(pageNumber).then(function(page) { 
+        setPage(page);   
       });
     }
-  }, [ pdf, pageNumber ]);
+  }, [ pdf ]);
 
   return (
-    <div 
-      ref={containerEl}
-      className="pdf-viewer-container">
-      
+    <div className="pdf-viewer-container">
+      <AnnotatablePage page={page} />
     </div>
   )
 
