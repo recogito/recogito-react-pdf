@@ -11,50 +11,60 @@ const AnnotatablePage = props => {
 
   const [ recogito, setRecogito ] = useState();
 
-  useEffect(() => {
+  // Cleanup previous Recogito instance, canvas + text layer
+  const destroyPreviousPage = () => {
     // Clean up previous Recogito instance, if any
     if (recogito)
       recogito.destroy();
 
-    const prevCanvas = containerEl.current.querySelector('canvas');
-    if (prevCanvas) {
-      containerEl.current.removeChild(prevCanvas);
-      containerEl.current.querySelector('.textLayer').innerHTML = '';
-    }
+    const canvas = containerEl.current.querySelector('canvas');
+    if (canvas)
+      containerEl.current.removeChild(canvas);
+
+    const textLayer = containerEl.current.querySelector('.textLayer');
+    textLayer.innerHTML = '';
+  }
+
+  // Render on page change
+  useEffect(() => {
+    destroyPreviousPage();
 
     if (props.page) {
-      const scale = 1.8;
+      const scale = props.scale || 1.8;
       const viewport = props.page.getViewport({ scale });
 
-      // Prepare canvas using PDF page dimensions
       const canvas = document.createElement('canvas');
       canvas.height = viewport.height;
       canvas.width = viewport.width;
       containerEl.current.appendChild(canvas);
 
-      // Render PDF page into canvas context
       const renderContext = {
         canvasContext: canvas.getContext('2d'),
         viewport
       };
 
       props.page.render(renderContext).promise.then(function () {
-        console.log('Page rendered');
+        const r = new Recogito({ 
+          content: containerEl.current.querySelector('.textLayer'), 
+          mode: 'pre' 
+        });
 
-        const r = new Recogito({ content: containerEl.current.querySelector('.textLayer'), mode: 'pre' });
         setRecogito(r)
       });
 
-      props.page.getTextContent().then(textContent => {
-        PDFJS.renderTextLayer({
-          textContent: textContent,
-          container: containerEl.current.querySelector('.textLayer'),
-          viewport: viewport,
-          textDivs: []
-        });
-      });
+      props.page.getTextContent().then(textContent => PDFJS.renderTextLayer({
+        textContent: textContent,
+        container: containerEl.current.querySelector('.textLayer'),
+        viewport: viewport,
+        textDivs: []
+      }));
     }
   }, [ props.page ]);
+
+  useEffect(() => {
+    console.log('setting annotation mode to ' + props.annotationMode);
+    recogito?.setMode(props.annotationMode);
+  }, [ props.annotationMode ])
 
   return (
     <div

@@ -1,3 +1,62 @@
+html, body {
+  padding:0;
+  margin:0;
+}
+
+#app main {
+  background-color:#cbcbcb;
+  padding:20px 0 40px 0;
+}
+
+header {
+  padding:20px;
+  box-shadow:0 1px 10px rgba(0, 0, 0, 0.3);
+}
+
+header button {
+  background:none;
+  border:none;
+  outline:none;
+  font-size:24px;
+  cursor:pointer;
+  padding:3px;
+  border-radius:50%;
+  width:40px;
+  height:40px;
+  display:inline-block;
+  margin-right:10px;
+}
+
+header button span {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+header button:hover {
+  background:rgba(0, 0, 0, 0.08);
+}
+
+header button.active {
+  background-color:orange;
+  color:#fff;
+}
+
+header label {
+  vertical-align:super;
+  font-size:18px;
+  padding:4px 10px;
+  margin:0 8px;
+  background-color:rgba(0, 0, 0, 0.08);
+  border-radius:3px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.pdf-viewer-container {
+  display:flex;
+  justify-content:center;
+}
+
 .page-container {
   position:relative;
 }
@@ -18,8 +77,16 @@
   color:red;
 }
 
+.page-container .textLayer br {
+  display:none;
+}
+
 .page-container .textLayer span.r6o-annotation,
 .page-container .textLayer span.r6o-selection {
   position:relative;
   cursor:pointer;
+}
+
+.page-container canvas {
+  box-shadow:1px 1px 10px rgba(0, 0, 0, 0.1);
 }
