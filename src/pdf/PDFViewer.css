@@ -19,5 +19,6 @@
 }
 
 .r6o-annotation {
+  position:relative !important;
   cursor:pointer !important;
 }
