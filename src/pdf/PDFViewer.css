@@ -2,10 +2,22 @@
   position:relative;
 }
 
-.textLayer.debug {
+.page-container > div {
+  position:absolute !important;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+}
+
+.textLayer {
   opacity:1;
 }
 
 .textLayer.debug span {
   color:red;
+}
+
+.r6o-annotation {
+  cursor:pointer !important;
 }

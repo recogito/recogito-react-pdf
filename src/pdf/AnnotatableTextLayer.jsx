@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import * as PDFJS from 'pdfjs-dist/webpack';
+import { Recogito } from '@recogito/recogito-js';
 
 import 'pdfjs-dist/web/pdf_viewer.css';
+import '@recogito/recogito-js/dist/recogito.min.css';
 
 const AnnotatableTextLayer = props => {
 
@@ -17,8 +19,8 @@ const AnnotatableTextLayer = props => {
           textDivs: []
         }).promise.then(() => {
 
-          // TODO: init RecogitoJS
-          
+          const r = new Recogito({ content: elem.current, mode: 'pre' });
+
         });
       });
     }
