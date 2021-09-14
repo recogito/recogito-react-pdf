@@ -2,7 +2,7 @@
   position:relative;
 }
 
-.page-container > div {
+.page-container .r6o-content-wrapper {
   position:absolute !important;
   top:0;
   left:0;
@@ -10,7 +10,7 @@
   bottom:0;
 }
 
-.textLayer {
+.page-container .textLayer {
   opacity:1;
 }
 
@@ -18,7 +18,8 @@
   color:red;
 }
 
-.r6o-annotation {
-  position:relative !important;
-  cursor:pointer !important;
+.page-container .textLayer span.r6o-annotation,
+.page-container .textLayer span.r6o-selection {
+  position:relative;
+  cursor:pointer;
 }
