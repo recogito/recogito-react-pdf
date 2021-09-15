@@ -1,6 +1,7 @@
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -35,6 +36,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: 'head',
       template: './public/index.html'
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'public/compressed.tracemonkey-pldi-09.pdf', to: 'compressed.tracemonkey-pldi-09.pdf' }
+      ],
     })
   ]
 };
