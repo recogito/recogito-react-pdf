@@ -7,7 +7,9 @@ const URL = 'compressed.tracemonkey-pldi-09.pdf';
 window.onload = function() {
 
   ReactDOM.render(
-    <PDFViewer url={URL} />,
+    <PDFViewer 
+      url={URL} />,
+
     document.getElementById('app')
   );
     

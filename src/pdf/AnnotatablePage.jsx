@@ -49,6 +49,12 @@ const AnnotatablePage = props => {
           mode: 'pre' 
         });
 
+        r.on('createAnnotation', a => props.onCreateAnnotation(a));
+        r.on('updateAnnotation', (a, p) => props.onUpdateAnnotation(a, p));
+        r.on('deleteAnnotation', a => props.onDeleteAnnotation(a));
+
+        r.setAnnotations(props.annotations);
+
         setRecogito(r)
       });
 

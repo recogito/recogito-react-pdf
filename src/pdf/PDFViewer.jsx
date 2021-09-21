@@ -2,9 +2,25 @@ import React, { useEffect, useState } from 'react';
 import * as PDFJS from 'pdfjs-dist/webpack';  
 import { CgDebug, CgChevronLeft, CgChevronRight, CgArrowsExpandDownRight } from 'react-icons/cg';
 
+import Store from './AnnotationStore';
 import AnnotatablePage from './AnnotatablePage';
 
 import './PDFViewer.css';
+
+const store = new Store();
+
+/** 
+ * Helper to insert the page index into the annotation target
+ */
+const extendTarget = (annotation, page) => ({
+    ...annotation,
+    target: {
+      selector: annotation.target.selector.map(selector =>
+        selector.type === 'TextPositionSelector' ?  
+          { ...selector, page } : selector)
+    }
+  }
+)
 
 const PDFViewer = props => {
 
@@ -53,6 +69,32 @@ const PDFViewer = props => {
       setAnnotationMode('ANNOTATION');
   }
 
+  const onCreateAnnotation = a => {
+    // Insert page number in target
+    const extended = extendTarget(a, page.pageNumber);
+
+    // Store in memory
+    store.createAnnotation(extended);
+
+    // Trigger outside event handler, if any
+    props.onCreateAnnotation && props.onCreateAnnotation(extended);
+  }
+
+  const onUpdateAnnotation = (a, p) => {
+    const updated = extendTarget(a, page.pageNumber);
+    const previous = extendTarget(p, page.pageNumber);
+
+    store.updateAnnotation(updated, previous);
+
+    props.onUpdateAnnotation && props.onUpdateAnnotation(updated, previous);
+  }
+    
+  const onDeleteAnnotation = a => {
+    const extended = extendTarget(a, page.pageNumber);
+    store.deleteAnnotation(extended);
+    props.DeleteAnnotation && props.DeleteAnnotation(extended);
+  }
+  
   return (
     <div>
       <header>
@@ -87,8 +129,12 @@ const PDFViewer = props => {
         <div className="pdf-viewer-container">
           <AnnotatablePage 
             page={page} 
+            annotations={page ? store.getAnnotations(page.pageNumber) : []}
             debug={debug} 
-            annotationMode={annotationMode} />
+            annotationMode={annotationMode} 
+            onCreateAnnotation={onCreateAnnotation}
+            onUpdateAnnotation={onUpdateAnnotation}
+            onDeleteAnnotation={onDeleteAnnotation} />
         </div>
       </main>
     </div>
