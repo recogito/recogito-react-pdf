@@ -43,7 +43,14 @@ const AnnotatablePage = props => {
         viewport
       };
 
-      props.page.render(renderContext).promise.then(function () {
+      props.page.render(renderContext);
+
+      props.page.getTextContent().then(textContent => PDFJS.renderTextLayer({
+        textContent: textContent,
+        container: containerEl.current.querySelector('.textLayer'),
+        viewport: viewport,
+        textDivs: []
+      }).promise.then(() => {
         const r = new Recogito({ 
           content: containerEl.current.querySelector('.textLayer'), 
           mode: 'pre' 
@@ -56,13 +63,6 @@ const AnnotatablePage = props => {
         r.setAnnotations(props.annotations);
 
         setRecogito(r)
-      });
-
-      props.page.getTextContent().then(textContent => PDFJS.renderTextLayer({
-        textContent: textContent,
-        container: containerEl.current.querySelector('.textLayer'),
-        viewport: viewport,
-        textDivs: []
       }));
     }
   }, [ props.page ]);
