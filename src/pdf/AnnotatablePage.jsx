@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import * as PDFJS from 'pdfjs-dist/webpack';
+import * as PDFJS from 'pdfjs-dist/legacy/build/pdf';
 import { Recogito } from '@recogito/recogito-js';
 
 import 'pdfjs-dist/web/pdf_viewer.css';

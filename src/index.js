@@ -1,16 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as pdfjs from 'pdfjs-dist/legacy/build/pdf';
 import PDFViewer from './pdf/PDFViewer';
 
-const URL = 'compressed.tracemonkey-pldi-09.pdf';
+pdfjs.GlobalWorkerOptions.workerSrc = 'pdf.worker.js';
 
-window.onload = function() {
-
-  ReactDOM.render(
-    <PDFViewer 
-      url={URL} />,
-
-    document.getElementById('app')
-  );
-    
+export { 
+  pdfjs, PDFViewer
 }

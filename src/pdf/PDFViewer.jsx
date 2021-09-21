@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import * as PDFJS from 'pdfjs-dist/webpack';  
+import * as PDFJS from 'pdfjs-dist/legacy/build/pdf';
 import { CgDebug, CgChevronLeft, CgChevronRight, CgArrowsExpandDownRight } from 'react-icons/cg';
 
 import Store from './AnnotationStore';

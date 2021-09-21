@@ -1,7 +1,7 @@
 {
-  "name": "@recogito/recogito-pdf",
-  "version": "0.1.1",
-  "description": "A JavaScript PDF viewer with annotation functionality, powered by PDF.js and RecogitoJS",
+  "name": "@recogito/recogito-react-pdf",
+  "version": "0.1.0",
+  "description": "A React component for annotating PDF, powered by PDF.js and RecogitoJS",
   "main": "src/index.js",
   "scripts": {
     "start": "webpack serve  --mode development --open",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/recogito/recogito-pdf.git"
+    "url": "git+https://github.com/recogito/recogito-react-pdf.git"
   },
   "keywords": [
     "Annotation",
@@ -20,28 +20,20 @@
   "author": "Rainer Simon",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/recogito/recogito-pdf/issues"
+    "url": "https://github.com/recogito/recogito-react-pdf/issues"
   },
-  "homepage": "https://github.com/recogito/recogito-pdf#readme",
+  "homepage": "https://github.com/recogito/recogito-react-pdf#readme",
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.14.5",
-    "@babel/plugin-transform-runtime": "^7.15.0",
-    "@babel/preset-env": "^7.15.6",
-    "@babel/preset-react": "^7.14.5",
-    "babel-loader": "^8.2.2",
-    "copy-webpack-plugin": "^9.0.1",
-    "css-loader": "^6.2.0",
-    "html-webpack-plugin": "^5.3.2",
-    "style-loader": "^3.2.1",
-    "webpack": "^5.52.1",
-    "webpack-cli": "^4.8.0",
-    "webpack-dev-server": "^4.2.1"
+    "@babel/cli": "^7.8.0",
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.0",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.9.0"
   },
   "dependencies": {
     "@recogito/recogito-js": "^1.4.2",
-    "pdfjs-dist": "^2.9.359",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "pdfjs-dist": "2.9.359",
     "react-icons": "^4.2.0"
   }
 }

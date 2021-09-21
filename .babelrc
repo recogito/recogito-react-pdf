@@ -1,10 +1,22 @@
 {
   "presets": [
-    "@babel/preset-env",
-    "@babel/preset-react"
+    "@babel/env",
+    "@babel/react"
   ],
   "plugins": [
-    "@babel/plugin-proposal-class-properties",
-    "@babel/plugin-transform-runtime"
-  ]
+    "@babel/transform-runtime",
+    "@babel/proposal-class-properties"
+  ],
+  "env": {
+    "production-esm": {
+      "presets": [
+        ["@babel/env", { "modules": false }],
+        "@babel/react"
+      ],
+      "plugins": [
+        ["@babel/transform-runtime", { "useESModules": true }],
+        "@babel/proposal-class-properties"
+      ]
+    }
+  }
 }
