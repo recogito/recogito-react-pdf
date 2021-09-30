@@ -130,6 +130,7 @@ const PDFViewer = props => {
           <AnnotatablePage 
             page={page} 
             annotations={page ? store.getAnnotations(page.pageNumber) : []}
+            config={props.config}
             debug={debug} 
             annotationMode={annotationMode} 
             onCreateAnnotation={onCreateAnnotation}

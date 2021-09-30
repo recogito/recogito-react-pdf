@@ -5,8 +5,11 @@ export default class AnnotationStore {
     this._annotations = [];
   }
 
+  setAnnotations(annotations) {
+    this._annotations = annotations;
+  }
+
   createAnnotation(annotation) {
-    console.log(annotation, 'created');
     this._annotations.push(annotation);
   }
 
