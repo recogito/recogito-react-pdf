@@ -18,8 +18,26 @@ pdfjs.GlobalWorkerOptions.workerSrc = 'pdf.worker.js';
 
 window.onload = function() {
 
+  // Recogito init config (optional)
+  // see https://github.com/recogito/recogito-js/wiki/API-Reference
+  const config = { /* ... */ };
+
+  // Initial annotations in W3C Web Annotation format
+  const annotations = [ /* ... */ ];
+
+  // CRUD event handlers
+  const onCreateAnnotation = function () { /* ... */ };
+  const onUpdateAnnotation = function () { /* ... */ };
+  const onDeleteAnnotation = function () { /* ... */ };
+
   ReactDOM.render(
-    <PDFViewer url="compressed.tracemonkey-pldi-09.pdf" />,
+    <PDFViewer
+      url="compressed.tracemonkey-pldi-09.pdf" 
+      config={config} 
+      annotations={annotations} 
+      onCreateAnnotation={onCreateAnnotation} 
+      onUpdateAnnotation={onCreateAnnotation} 
+      onDeleteAnnotation={onCreateAnnotation} />,
     document.getElementById('app')
   );
     

@@ -51,7 +51,10 @@ const AnnotatablePage = props => {
         viewport: viewport,
         textDivs: []
       }).promise.then(() => {
+        const config = props.config || {};
+
         const r = new Recogito({ 
+          ...config,
           content: containerEl.current.querySelector('.textLayer'), 
           mode: 'pre' 
         });
@@ -66,6 +69,11 @@ const AnnotatablePage = props => {
       }));
     }
   }, [ props.page ]);
+
+  useEffect(() => {
+    if (recogito)
+      recogito.setAnnotations(props.annotations);
+  }, [ props.annotations ]);
 
   useEffect(() => {
     console.log('setting annotation mode to ' + props.annotationMode);

@@ -28,6 +28,8 @@ const PDFViewer = props => {
 
   const [ page, setPage ] = useState();
 
+  const [ annotations, setAnnotations ] = useState([]);
+
   const [ debug, setDebug ] = useState(false);
 
   const [ annotationMode, setAnnotationMode ] = useState('ANNOTATION');
@@ -43,9 +45,20 @@ const PDFViewer = props => {
 
   // Render first page when PDF loaded
   useEffect(() => {
-    if (pdf)
+    if (pdf) {
       pdf.getPage(1).then(setPage);
+      setAnnotations(store.getAnnotations(1));
+    }
   }, [ pdf ]);
+
+  useEffect(() => {
+    store.setAnnotations(props.annotations || []);
+
+    if (page)
+      setAnnotations(store.getAnnotations(page.pageNumber));
+    else
+      setAnnotations([]);
+  }, [ props.annotations ])
 
   const onPreviousPage = () => {
     const { pageNumber } = page;
@@ -76,6 +89,8 @@ const PDFViewer = props => {
     // Store in memory
     store.createAnnotation(extended);
 
+    console.log(JSON.stringify(extended));
+
     // Trigger outside event handler, if any
     props.onCreateAnnotation && props.onCreateAnnotation(extended);
   }
@@ -92,7 +107,7 @@ const PDFViewer = props => {
   const onDeleteAnnotation = a => {
     const extended = extendTarget(a, page.pageNumber);
     store.deleteAnnotation(extended);
-    props.DeleteAnnotation && props.DeleteAnnotation(extended);
+    props.onDeleteAnnotation && props.onDeleteAnnotation(extended);
   }
   
   return (
@@ -129,7 +144,7 @@ const PDFViewer = props => {
         <div className="pdf-viewer-container">
           <AnnotatablePage 
             page={page} 
-            annotations={page ? store.getAnnotations(page.pageNumber) : []}
+            annotations={annotations}
             config={props.config}
             debug={debug} 
             annotationMode={annotationMode} 
