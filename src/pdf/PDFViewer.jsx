@@ -89,8 +89,6 @@ const PDFViewer = props => {
     // Store in memory
     store.createAnnotation(extended);
 
-    console.log(JSON.stringify(extended));
-
     // Trigger outside event handler, if any
     props.onCreateAnnotation && props.onCreateAnnotation(extended);
   }
