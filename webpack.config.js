@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: './src/test.js'
+    app: './test/index.js'
   },
   output: {
     filename: '[name].bundle.js',

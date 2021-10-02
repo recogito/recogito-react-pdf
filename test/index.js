@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { pdfjs, PDFViewer } from '.';
+import { pdfjs, PDFViewer } from '../src';
 
 pdfjs.GlobalWorkerOptions.workerSrc = 'pdf.worker.js';
 
