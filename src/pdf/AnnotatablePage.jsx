@@ -76,7 +76,6 @@ const AnnotatablePage = props => {
   }, [ props.annotations ]);
 
   useEffect(() => {
-    console.log('setting annotation mode to ' + props.annotationMode);
     recogito?.setMode(props.annotationMode);
   }, [ props.annotationMode ])
 

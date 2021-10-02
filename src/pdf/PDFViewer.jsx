@@ -142,7 +142,7 @@ const PDFViewer = props => {
         <div className="pdf-viewer-container">
           <AnnotatablePage 
             page={page} 
-            annotations={annotations}
+            annotations={page ? store.getAnnotations(page.pageNumber) : []}
             config={props.config}
             debug={debug} 
             annotationMode={annotationMode} 

@@ -27,7 +27,7 @@ export default class AnnotationStore {
     const isOnPage = annotation => {
       const positionSelector = annotation.target.selector
         .find(({ type }) => type === 'TextPositionSelector'); 
-      
+
       return positionSelector?.page == pageNumber;
     };
 
