@@ -71,11 +71,14 @@ const AnnotatablePage = props => {
   }, [ props.page ]);
 
   useEffect(() => {
-    if (recogito)
+    // Hack
+    if (recogito && recogito.getAnnotations() === 0) {
       recogito.setAnnotations(props.annotations);
+    }
   }, [ props.annotations ]);
 
   useEffect(() => {
+    console.log('annotation mode');
     recogito?.setMode(props.annotationMode);
   }, [ props.annotationMode ])
 

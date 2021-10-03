@@ -12,24 +12,32 @@ const store = new Store();
 /** 
  * Helper to insert the page index into the annotation target
  */
-const extendTarget = (annotation, source, page) => ({
-    ...annotation,
-    target: {
-      source,
-      selector: annotation.target.selector.map(selector =>
-        selector.type === 'TextPositionSelector' ?  
-          { ...selector, page } : selector)
-    }
-  }
-)
+const extendTarget = (annotation, source, page) => 
+  Array.isArray(annotation.target) ?
+    // Relationship annotation - no change
+    ({
+      ...annotation,
+      target: annotation.target.map(t => ({
+        id: t.id, source
+      }))
+    }) : 
+    
+    // Text annotation: add page and source
+    ({
+      ...annotation,
+      target: {
+        source,
+        selector: annotation.target.selector.map(selector =>
+          selector.type === 'TextPositionSelector' ?  
+            { ...selector, page } : selector)
+      }
+    })
 
 const PDFViewer = props => {
 
   const [ pdf, setPdf ] = useState();
 
   const [ page, setPage ] = useState();
-
-  const [ annotations, setAnnotations ] = useState([]);
 
   const [ debug, setDebug ] = useState(false);
 
@@ -48,17 +56,11 @@ const PDFViewer = props => {
   useEffect(() => {
     if (pdf) {
       pdf.getPage(1).then(setPage);
-      setAnnotations(store.getAnnotations(1));
     }
   }, [ pdf ]);
 
   useEffect(() => {
     store.setAnnotations(props.annotations || []);
-
-    if (page)
-      setAnnotations(store.getAnnotations(page.pageNumber));
-    else
-      setAnnotations([]);
   }, [ props.annotations ])
 
   const onPreviousPage = () => {

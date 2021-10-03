@@ -24,14 +24,28 @@ export default class AnnotationStore {
   }
 
   getAnnotations(pageNumber) {
+    // Text annotations on this page
     const isOnPage = annotation => {
-      const positionSelector = annotation.target.selector
-        .find(({ type }) => type === 'TextPositionSelector'); 
+      const positionSelector = annotation.target.selector ?
+        annotation.target.selector.find(({ type }) => type === 'TextPositionSelector') : null; 
 
       return positionSelector?.page == pageNumber;
     };
 
-    return this._annotations.filter(isOnPage);
+    const annotationsOnPage = this._annotations.filter(isOnPage);
+
+    // Relations linked to the given annotations
+    const ids = new Set(annotationsOnPage.map(a => a.id));
+    const linkedRelations = this._annotations
+      .filter(a => !a.target.selector) // all relations
+      .filter(a => {
+        const from = a.target[0].id;
+        const to = a.target[1].id;
+
+        return ids.has(from) || ids.has(to);
+      });
+
+    return [...annotationsOnPage, ...linkedRelations ];
   }
 
 }
