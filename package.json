@@ -42,7 +42,7 @@
     "webpack-dev-server": "^4.2.1"
   },
   "dependencies": {
-    "@recogito/recogito-js": "^1.4.2",
+    "@recogito/recogito-js": "^1.4.3",
     "pdfjs-dist": "2.9.359",
     "react-icons": "^4.2.0"
   }
