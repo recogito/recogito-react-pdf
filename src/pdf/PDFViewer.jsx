@@ -12,9 +12,10 @@ const store = new Store();
 /** 
  * Helper to insert the page index into the annotation target
  */
-const extendTarget = (annotation, page) => ({
+const extendTarget = (annotation, source, page) => ({
     ...annotation,
     target: {
+      source,
       selector: annotation.target.selector.map(selector =>
         selector.type === 'TextPositionSelector' ?  
           { ...selector, page } : selector)
@@ -84,7 +85,7 @@ const PDFViewer = props => {
 
   const onCreateAnnotation = a => {
     // Insert page number in target
-    const extended = extendTarget(a, page.pageNumber);
+    const extended = extendTarget(a, props.url, page.pageNumber);
 
     // Store in memory
     store.createAnnotation(extended);
@@ -94,8 +95,8 @@ const PDFViewer = props => {
   }
 
   const onUpdateAnnotation = (a, p) => {
-    const updated = extendTarget(a, page.pageNumber);
-    const previous = extendTarget(p, page.pageNumber);
+    const updated = extendTarget(a, props.url, page.pageNumber);
+    const previous = extendTarget(p, props.url, page.pageNumber);
 
     store.updateAnnotation(updated, previous);
 
@@ -103,7 +104,7 @@ const PDFViewer = props => {
   }
     
   const onDeleteAnnotation = a => {
-    const extended = extendTarget(a, page.pageNumber);
+    const extended = extendTarget(a, props.url, page.pageNumber);
     store.deleteAnnotation(extended);
     props.onDeleteAnnotation && props.onDeleteAnnotation(extended);
   }
