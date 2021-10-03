@@ -32,6 +32,8 @@
     "css-loader": "^5.2.7",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.2",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "sass": "^1.35.2",
     "sass-loader": "^10.2.0",
     "style-loader": "^2.0.0",
@@ -42,8 +44,6 @@
   "dependencies": {
     "@recogito/recogito-js": "^1.4.2",
     "pdfjs-dist": "2.9.359",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
     "react-icons": "^4.2.0"
   }
 }
