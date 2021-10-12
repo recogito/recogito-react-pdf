@@ -11,14 +11,29 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
+    alias: {
+      'react': path.resolve('./node_modules/react'),
+      'react-dom': path.resolve('./node_modules/react-dom')
+    }
   },
   module: {
     rules: [
       { 
         test: /\.(js|jsx)$/, 
         use: { 
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          options: {
+            "presets": [
+              "@babel/preset-env",
+              "@babel/preset-react"
+            ],
+            "plugins": [
+              [
+                "@babel/plugin-proposal-class-properties"
+              ]
+            ]
+          }
         }
       },
       { test: /\.css$/,  use: [ 'style-loader', 'css-loader'] },

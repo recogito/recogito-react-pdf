@@ -1,6 +1,6 @@
 {
   "name": "@recogito/recogito-react-pdf",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "A React component for annotating PDF, powered by PDF.js and RecogitoJS",
   "main": "src/index.js",
   "scripts": {
@@ -32,18 +32,18 @@
     "css-loader": "^5.2.7",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.2",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "sass": "^1.35.2",
     "sass-loader": "^10.2.0",
-    "style-loader": "^2.0.0",
-    "webpack": "^4.46.0",
-    "webpack-cli": "^4.8.0",
-    "webpack-dev-server": "^4.2.1"
+    "style-loader": "^2.0.0"
   },
   "dependencies": {
-    "@recogito/recogito-js": "^1.4.3",
+    "@recogito/recogito-js": "^1.4.5",
     "pdfjs-dist": "2.9.359",
-    "react-icons": "^4.2.0"
+    "react-icons": "^4.2.0",
+    "webpack": "^5.58.1",
+    "webpack-cli": "^4.9.0",
+    "webpack-dev-server": "^4.3.1"
   }
 }

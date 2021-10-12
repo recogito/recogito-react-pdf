@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as PDFJS from 'pdfjs-dist/legacy/build/pdf';
-import { Recogito } from '@recogito/recogito-js';
+import { Recogito } from '@recogito/recogito-js/src';
 
 import 'pdfjs-dist/web/pdf_viewer.css';
 import '@recogito/recogito-js/dist/recogito.min.css';
