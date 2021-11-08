@@ -74,6 +74,10 @@ header label {
   z-index:1;
 }
 
+.page-container .r6o-relation-editor {
+  z-index:1;
+}
+
 .page-container .a9s-annotationlayer {
   z-index:2;
   pointer-events:none;
