@@ -94,13 +94,10 @@ const AnnotatablePage = props => {
       const imageLayer = containerEl.current.querySelector('svg.a9s-annotationlayer');
       
       if (imageLayer) {
-        console.log('dsafasd', props.annotationMode, imageLayer);
-
         if (props.annotationMode === 'IMAGE') {
-          imageLayer.style.zIndex = 2;
-          console.log(imageLayer);
+          imageLayer.style.pointerEvents = 'auto';
         } else {
-          imageLayer.style.zIndex = 0;
+          imageLayer.style.pointerEvents = null;
           recogito.setMode(props.annotationMode);
         }
       }

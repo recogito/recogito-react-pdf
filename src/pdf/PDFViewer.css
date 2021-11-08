@@ -74,6 +74,16 @@ header label {
   z-index:1;
 }
 
+.page-container .a9s-annotationlayer {
+  z-index:2;
+  pointer-events:none;
+}
+
+.page-container .r6o-annotation,
+.page-container .a9s-annotation {
+  pointer-events:all;
+}
+
 .page-container.debug .textLayer span {
   color:red;
 }
