@@ -39,7 +39,7 @@
     "style-loader": "^2.0.0"
   },
   "dependencies": {
-    "@recogito/annotorious": "^2.5.10",
+    "@recogito/annotorious": "github:recogito/annotorious",
     "@recogito/recogito-js": "^1.5.3",
     "pdfjs-dist": "2.9.359",
     "react-icons": "^4.2.0",
