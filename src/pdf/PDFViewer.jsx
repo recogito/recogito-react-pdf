@@ -13,26 +13,42 @@ const store = new Store();
 /** 
  * Helper to insert the page index into the annotation target
  */
-const extendTarget = (annotation, source, page) => 
-  Array.isArray(annotation.target) ?
-    // Relationship annotation - no change
-    ({
+const extendTarget = (annotation, source, page) => {
+
+  // HACK! This holds true for the time being, but is not
+  // a very robust criterion...
+  const isRelationAnnotation = Array.isArray(annotation.target);
+
+  // Adds 'page' field to selector (unless it's a TextQuoteSelector)
+  const extendSelector = selector => selector.type === 'TextQuoteSelector' ? 
+    selector : { ...selector, page };
+
+  if (isRelationAnnotation) {
+    // Nothing to change, just dd source
+    return {
       ...annotation,
       target: annotation.target.map(t => ({
         id: t.id, source
       }))
-    }) : 
-    
-    // Text annotation: add page and source
-    ({
-      ...annotation,
-      target: {
-        source,
-        selector: annotation.target.selector.map(selector =>
-          selector.type === 'TextPositionSelector' ?  
-            { ...selector, page } : selector)
+    };
+  } else {
+    return Array.isArray(annotation.target.selector) ? 
+      {
+        ...annotation,
+        target: {
+          source,
+          selector: annotation.target.selector.map(extendSelector)
+        }
+      } : {
+        ...annotation,
+        target: {
+          source,
+          selector: extendSelector(annotation.target.selector)
+        }
       }
-    })
+  }
+    
+}
 
 const PDFViewer = props => {
 

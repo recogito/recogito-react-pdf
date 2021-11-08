@@ -26,10 +26,13 @@ export default class AnnotationStore {
   getAnnotations(pageNumber) {
     // Text annotations on this page
     const isOnPage = annotation => {
-      const positionSelector = annotation.target.selector ?
-        annotation.target.selector.find(({ type }) => type === 'TextPositionSelector') : null; 
+      if (annotation.target.selector) {
+        const selectors = Array.isArray(annotation.target.selector) ? 
+          annotation.target.selector : [ annotation.target.selector ];
 
-      return positionSelector?.page == pageNumber;
+        const selectorWithPage = selectors.find(s => s.page); 
+        return selectorWithPage?.page == pageNumber;
+      }
     };
 
     const annotationsOnPage = this._annotations.filter(isOnPage);

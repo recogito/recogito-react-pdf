@@ -6,6 +6,32 @@ import { Annotorious } from '@recogito/annotorious/src';
 import 'pdfjs-dist/web/pdf_viewer.css';
 import '@recogito/recogito-js/dist/recogito.min.css';
 
+/** Splits annotations by type, text or image **/
+const splitByType = annotations => {
+  let text = [];
+  let image = [];
+
+  annotations.forEach(a => {
+    if (a.target.selector) {
+      const selectors = Array.isArray(a.target.selector) ?
+        a.target.selector : [ a.target.selector ];
+      
+      const hasImageSelector =
+        selectors.find(s => s.type === 'FragmentSelector' || s.type === 'SvgSelector');
+
+      if (hasImageSelector)
+        image.push(a);
+      else
+        text.push(a);
+    } else {
+      // Relationship
+      text.push(a);
+    }
+  });
+
+  return { text, image };
+}
+
 const AnnotatablePage = props => {
 
   const containerEl = useRef();
@@ -59,6 +85,8 @@ const AnnotatablePage = props => {
       }).promise.then(() => {
         const config = props.config || {};
 
+        const { text, image } = splitByType(props.annotations);
+
         const r = new Recogito({ 
           ...config,
           content: containerEl.current.querySelector('.textLayer'), 
@@ -69,15 +97,23 @@ const AnnotatablePage = props => {
         r.on('updateAnnotation', (a, p) => props.onUpdateAnnotation(a, p));
         r.on('deleteAnnotation', a => props.onDeleteAnnotation(a));
 
-        r.setAnnotations(props.annotations);
-
+        // TODO split: text annotations only
+        r.setAnnotations(text);
         setRecogito(r);
 
         const anno = new Annotorious({
           image: canvas
         });
 
+        anno.on('createAnnotation', a => props.onCreateAnnotation(a));
+        anno.on('updateAnnotation', (a, p) => props.onUpdateAnnotation(a, p));
+        anno.on('deleteAnnotation', a => props.onDeleteAnnotation(a));
+
+        anno.setAnnotations(image);
         setAnno(anno);
+
+        r.on('selectAnnotation', () => anno.selectAnnotation());
+        // TODO need an API method that does the same for RecogiotJS!
       }));
     }
   }, [ props.page ]);
