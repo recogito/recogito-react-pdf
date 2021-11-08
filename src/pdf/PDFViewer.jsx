@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as PDFJS from 'pdfjs-dist/legacy/build/pdf';
 import { CgDebug, CgChevronLeft, CgChevronRight, CgArrowsExpandDownRight } from 'react-icons/cg';
+import { RiImageEditFill } from 'react-icons/ri';
 
 import Store from './AnnotationStore';
 import AnnotatablePage from './AnnotatablePage';
@@ -78,11 +79,18 @@ const PDFViewer = props => {
       pdf.getPage(nextNum).then(page => setPage(page));
   }
 
-  const onToggleMode = () => {
-    if (annotationMode === 'ANNOTATION')
-      setAnnotationMode('RELATIONS')
-    else 
+  const onToggleRelationsMode = () => {
+    if (annotationMode === 'RELATIONS')
       setAnnotationMode('ANNOTATION');
+    else
+      setAnnotationMode('RELATIONS'); 
+  }
+
+  const onToggleImageMode = () => {
+    if (annotationMode === 'IMAGE')
+      setAnnotationMode('ANNOTATION');
+    else
+      setAnnotationMode('IMAGE');
   }
 
   const onCreateAnnotation = a => {
@@ -134,9 +142,19 @@ const PDFViewer = props => {
           </span>
         </button>
 
-        <button className={annotationMode === 'RELATIONS' ? 'active' : null} onClick={onToggleMode}>
+        <button 
+          className={annotationMode === 'RELATIONS' ? 'active' : null} 
+          onClick={onToggleRelationsMode}>
           <span className="inner">
             <CgArrowsExpandDownRight />
+          </span>
+        </button>
+
+        <button
+          className={annotationMode === 'IMAGE' ? 'active' : null} 
+          onClick={onToggleImageMode}>
+          <span className="inner">
+            <RiImageEditFill />
           </span>
         </button>
       </header>

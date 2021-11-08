@@ -71,6 +71,7 @@ header label {
 
 .page-container .textLayer {
   opacity:1;
+  z-index:1;
 }
 
 .page-container.debug .textLayer span {

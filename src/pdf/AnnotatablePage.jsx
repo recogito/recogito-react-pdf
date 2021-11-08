@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as PDFJS from 'pdfjs-dist/legacy/build/pdf';
 import { Recogito } from '@recogito/recogito-js/src';
+import { Annotorious } from '@recogito/annotorious/src';
 
 import 'pdfjs-dist/web/pdf_viewer.css';
 import '@recogito/recogito-js/dist/recogito.min.css';
@@ -9,13 +10,18 @@ const AnnotatablePage = props => {
 
   const containerEl = useRef();
 
+  const [ anno, setAnno ] = useState();
+
   const [ recogito, setRecogito ] = useState();
 
   // Cleanup previous Recogito instance, canvas + text layer
   const destroyPreviousPage = () => {
-    // Clean up previous Recogito instance, if any
+    // Clean up previous Recogito + Annotorious instance, if any
     if (recogito)
       recogito.destroy();
+
+    if (anno)
+      anno.destroy();
 
     const canvas = containerEl.current.querySelector('canvas');
     if (canvas)
@@ -65,7 +71,13 @@ const AnnotatablePage = props => {
 
         r.setAnnotations(props.annotations);
 
-        setRecogito(r)
+        setRecogito(r);
+
+        const anno = new Annotorious({
+          image: canvas
+        });
+
+        setAnno(anno);
       }));
     }
   }, [ props.page ]);
@@ -78,8 +90,21 @@ const AnnotatablePage = props => {
   }, [ props.annotations ]);
 
   useEffect(() => {
-    console.log('annotation mode');
-    recogito?.setMode(props.annotationMode);
+    if (containerEl.current) {
+      const imageLayer = containerEl.current.querySelector('svg.a9s-annotationlayer');
+      
+      if (imageLayer) {
+        console.log('dsafasd', props.annotationMode, imageLayer);
+
+        if (props.annotationMode === 'IMAGE') {
+          imageLayer.style.zIndex = 2;
+          console.log(imageLayer);
+        } else {
+          imageLayer.style.zIndex = 0;
+          recogito.setMode(props.annotationMode);
+        }
+      }
+    }
   }, [ props.annotationMode ])
 
   return (
