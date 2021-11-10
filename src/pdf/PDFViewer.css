@@ -5,12 +5,16 @@ html, body {
 
 #app main {
   background-color:#cbcbcb;
-  padding:20px 0 40px 0;
+  padding:110px 0 40px 0;
 }
 
 header {
+  position:fixed;
+  width:100%;
   padding:20px;
   box-shadow:0 1px 10px rgba(0, 0, 0, 0.3);
+  background-color:#fff;
+  z-index:3;
 }
 
 header button {
