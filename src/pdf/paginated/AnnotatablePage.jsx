@@ -3,34 +3,10 @@ import * as PDFJS from 'pdfjs-dist/legacy/build/pdf';
 import { Recogito } from '@recogito/recogito-js/src';
 import { Annotorious } from '@recogito/annotorious/src';
 
+import { splitByType } from '../PDFAnnotation';
+
 import 'pdfjs-dist/web/pdf_viewer.css';
 import '@recogito/recogito-js/dist/recogito.min.css';
-
-/** Splits annotations by type, text or image **/
-const splitByType = annotations => {
-  let text = [];
-  let image = [];
-
-  annotations.forEach(a => {
-    if (a.target.selector) {
-      const selectors = Array.isArray(a.target.selector) ?
-        a.target.selector : [ a.target.selector ];
-      
-      const hasImageSelector =
-        selectors.find(s => s.type === 'FragmentSelector' || s.type === 'SvgSelector');
-
-      if (hasImageSelector)
-        image.push(a);
-      else
-        text.push(a);
-    } else {
-      // Relationship
-      text.push(a);
-    }
-  });
-
-  return { text, image };
-}
 
 const AnnotatablePage = props => {
 
@@ -113,7 +89,7 @@ const AnnotatablePage = props => {
         setAnno(anno);
 
         r.on('selectAnnotation', () => anno.selectAnnotation());
-        // TODO need an API method that does the same for RecogiotJS!
+        anno.on('selectAnnotation', () => r.selectAnnotation());
       }));
     }
   }, [ props.page ]);
