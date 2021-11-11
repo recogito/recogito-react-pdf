@@ -59,10 +59,13 @@ header label {
 .pdf-viewer-container {
   display:flex;
   justify-content:center;
+  align-items:center;
+  flex-direction:column;
 }
 
 .page-container {
   position:relative;
+  margin:10px 0;
 }
 
 .page-container .r6o-content-wrapper {
