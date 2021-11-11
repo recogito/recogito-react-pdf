@@ -16,6 +16,7 @@ const App = () => {
 
   return (
     <PDFViewer 
+      mode="scrolling"
       url="compressed.tracemonkey-pldi-09.pdf" 
       annotations={annotations} 
       onCreateAnnotation={a => console.log(JSON.stringify(a))} />
