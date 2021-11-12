@@ -9,8 +9,7 @@ const AnnotatablePage = props => {
 
   const containerEl = useRef();
 
-  const [ pageVisible, setPageVisible ] = useState(false);
-
+  const [ pageVisible, setPageVisible ] = useState(false)
   const [ isRendered, setRendered ] = useState(false);
 
   const [ anno, setAnno ] = useState();
@@ -70,6 +69,27 @@ const AnnotatablePage = props => {
     props.onDeleteAnnotation(extended)
   }
 
+  const setMode = recogito => {
+    if (isRendered) {
+      const imageLayer = containerEl.current.querySelector('svg.a9s-annotationlayer');
+
+      if (props.annotationMode === 'IMAGE') {
+        if (imageLayer)
+          imageLayer.style.pointerEvents = 'auto';
+      } else if (props.annotationMode === 'ANNOTATION') {
+        if (imageLayer)
+          imageLayer.style.pointerEvents = null;
+        
+          recogito.setMode('ANNOTATION');
+      } else if (props.annotationMode === 'RELATIONS') {
+        if (imageLayer)
+          imageLayer.style.pointerEvents = null;
+        
+        recogito.setMode('RELATIONS');
+      }
+    }
+  }
+
   const initAnnotationLayer = () => {
     console.log('Creating annotation layer on page ' + props.page);
 
@@ -105,6 +125,8 @@ const AnnotatablePage = props => {
     // wait time until Recogito/Annotorious inits are complete.
     r.setAnnotations(text);
     anno.setAnnotations(image);    
+
+    setMode(r);
   }
 
   const destroyAnnotationLayer = () => {
@@ -153,18 +175,7 @@ const AnnotatablePage = props => {
   }, [ isRendered, pageVisible ]);
 
   useEffect(() => {
-    if (containerEl.current) {
-      const imageLayer = containerEl.current.querySelector('svg.a9s-annotationlayer');
-      
-      if (imageLayer) {
-        if (props.annotationMode === 'IMAGE') {
-          imageLayer.style.pointerEvents = 'auto';
-        } else {
-          imageLayer.style.pointerEvents = null;
-          recogito.setMode(props.annotationMode);
-        }
-      }
-    }
+    setMode(recogito);
   }, [ props.annotationMode ])
 
   return (
