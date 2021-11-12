@@ -1,6 +1,7 @@
 # Recogito-PDF
 
-Annotate a PDF document in React. Powered by [PDF.js](https://mozilla.github.io/pdf.js/) and [RecogitoJS](https://github.com/recogito/recogito-js).
+Annotate a PDF document in React. Powered by [PDF.js](https://mozilla.github.io/pdf.js/),
+[RecogitoJS](https://github.com/recogito/recogito-js) and [Annotorious](https://github.com/recogito/annotorious).
 
 ![A screenshot of the React PDF annotation component](https://github.com/recogito/recogito-pdf/raw/main/sceenshot.png)
 
