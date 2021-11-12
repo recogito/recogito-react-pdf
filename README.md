@@ -30,9 +30,13 @@ window.onload = function() {
   const onUpdateAnnotation = function () { /* ... */ };
   const onDeleteAnnotation = function () { /* ... */ };
 
+  // Viewer mode can be "paginated" or "scrolling"
+  const mode = "paginated"; 
+
   ReactDOM.render(
     <PDFViewer
       url="compressed.tracemonkey-pldi-09.pdf" 
+      mode={mode}
       config={config} 
       annotations={annotations} 
       onCreateAnnotation={onCreateAnnotation} 
