@@ -70,7 +70,7 @@ const AnnotatablePage = props => {
   }
 
   const setMode = recogito => {
-    if (isRendered) {
+    if (pageVisible) {
       const imageLayer = containerEl.current.querySelector('svg.a9s-annotationlayer');
 
       if (props.annotationMode === 'IMAGE') {
