@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as PDFJS from 'pdfjs-dist/legacy/build/pdf';
-import { Recogito } from '@recogito/recogito-js';
-import { Annotorious } from '@recogito/annotorious';
+import { Recogito } from '@recogito/recogito-js/src';
+import { Annotorious } from '@recogito/annotorious/src';
 
 import { extendTarget, splitByType } from '../PDFAnnotation';
 
@@ -123,10 +123,17 @@ const AnnotatablePage = props => {
     // For some reason, React is not done initializing the Image-/TextAnnotators.
     // This remains an unsolved mystery for now. The hack is to introduce a little
     // wait time until Recogito/Annotorious inits are complete.
-    r.setAnnotations(text);
-    anno.setAnnotations(image);    
+    const init = () => {
+      if (r._app.current && anno._app.current) {
+        r.setAnnotations(text);
+        anno.setAnnotations(image);   
+        setMode(r);   
+      } else {
+        setTimeout(() => init(), 50);
+      }
+    }
 
-    setMode(r);
+    init();
   }
 
   const destroyAnnotationLayer = () => {
