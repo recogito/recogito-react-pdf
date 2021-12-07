@@ -39,9 +39,9 @@
     "style-loader": "^2.0.0"
   },
   "dependencies": {
-    "@recogito/annotorious": "github:recogito/annotorious",
+    "@recogito/annotorious": "^2.6.0",
     "@recogito/recogito-connections": "^0.1.1",
-    "@recogito/recogito-js": "^1.5.4",
+    "@recogito/recogito-js": "^1.6.1",
     "pdfjs-dist": "2.9.359",
     "react-icons": "^4.2.0",
     "webpack": "^5.58.1",
