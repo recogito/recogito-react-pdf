@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as PDFJS from 'pdfjs-dist/legacy/build/pdf';
+import Connections from '@recogito/recogito-connections';
 
 import EndlessViewer from './endless/EndlessViewer';
 import PaginatedViewer from './paginated/PaginatedViewer';
@@ -16,8 +17,13 @@ const PDFViewer = props => {
 
   const [ pdf, setPdf ] = useState();
 
+  const [ connections, setConnections ] = useState();
+
   // Load PDF on mount
   useEffect(() => {
+    // Init after DOM load
+    setConnections(new Connections());
+
     PDFJS.getDocument(props.url).promise
       .then(
         pdf => setPdf(pdf), 
@@ -50,6 +56,7 @@ const PDFViewer = props => {
         {...props}
         pdf={pdf}
         store={store}
+        connections={connections}
         onCreateAnnotation={onCreateAnnotation}
         onUpdateAnnotation={onUpdateAnnotation}
         onDeleteAnnotation={onDeleteAnnotation} /> :
@@ -58,6 +65,7 @@ const PDFViewer = props => {
         {...props}
         pdf={pdf}
         store={store}
+        connections={connections}
         onCreateAnnotation={onCreateAnnotation}
         onUpdateAnnotation={onUpdateAnnotation}
         onDeleteAnnotation={onDeleteAnnotation} />

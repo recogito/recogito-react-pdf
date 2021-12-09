@@ -64,6 +64,7 @@ const EndlessViewer = props => {
               config={props.config}
               debug={debug} 
               store={props.store}
+              connections={props.connections}
               annotationMode={annotationMode} 
               onCreateAnnotation={props.onCreateAnnotation}
               onUpdateAnnotation={props.onUpdateAnnotation}

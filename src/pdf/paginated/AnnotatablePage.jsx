@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as PDFJS from 'pdfjs-dist/legacy/build/pdf';
 import { Recogito } from '@recogito/recogito-js/src';
 import { Annotorious } from '@recogito/annotorious/src';
-import Connections from '@recogito/recogito-connections';
 
 import { splitByType } from '../PDFAnnotation';
 
@@ -66,11 +65,7 @@ const AnnotatablePage = props => {
           content: containerEl.current.querySelector('.textLayer'), 
           mode: 'pre' 
         });
-
-        // Init Recogito Connections plugin
-        // TDOD wire up events!
-        Connections(r);
-
+        
         r.on('createAnnotation', a => props.onCreateAnnotation(a));
         r.on('updateAnnotation', (a, p) => props.onUpdateAnnotation(a, p));
         r.on('deleteAnnotation', a => props.onDeleteAnnotation(a));
