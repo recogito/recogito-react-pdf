@@ -1,6 +1,6 @@
 {
   "name": "@recogito/recogito-react-pdf",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "description": "A React component for annotating PDF, powered by PDF.js and RecogitoJS",
   "main": "src/index.js",
   "scripts": {
@@ -39,7 +39,7 @@
     "style-loader": "^2.0.0"
   },
   "dependencies": {
-    "@recogito/annotorious": "^2.7.1",
+    "@recogito/annotorious": "^2.7.6",
     "@recogito/recogito-connections": "^0.1.1",
     "@recogito/recogito-js": "^1.7.1",
     "pdfjs-dist": "2.9.359",

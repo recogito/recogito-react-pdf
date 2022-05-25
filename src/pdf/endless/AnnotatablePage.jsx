@@ -113,6 +113,7 @@ const AnnotatablePage = props => {
     setRecogito(r);
 
     const anno = new Annotorious({
+      ...config,
       image: containerEl.current.querySelector('.imageLayer')
     });
 
