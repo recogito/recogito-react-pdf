@@ -73,7 +73,7 @@ const AnnotatablePage = props => {
         // TODO split: text annotations only
         r.setAnnotations(text);
         setRecogito(r);
-
+        
         const anno = new Annotorious({
           ...config,
           image: canvas
