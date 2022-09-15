@@ -104,8 +104,11 @@ const AnnotatablePage = props => {
     });
 
     // Init Recogito Connections plugin
-    // TDOD wire up events!
     props.connections.register(r);
+
+    props.connections.on('createConnection', onCreateAnnotation);
+    props.connections.on('updateConnection', onUpdateAnnotation);  
+    props.connections.on('deleteConnection', onDeleteAnnotation);
 
     r.on('createAnnotation', onCreateAnnotation);
     r.on('updateAnnotation', onUpdateAnnotation);

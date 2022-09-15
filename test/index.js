@@ -19,7 +19,9 @@ const App = () => {
       mode="scrolling"
       url="compressed.tracemonkey-pldi-09.pdf" 
       annotations={annotations} 
-      onCreateAnnotation={a => console.log(JSON.stringify(a))} />
+      onCreateAnnotation={a => console.log(JSON.stringify(a))} 
+      onUpdateAnnotation={(a, b) => console.log(JSON.stringify(a, b))} 
+      onDeleteAnnotation={a => console.log(JSON.stringify(a))} />
   )
 
 }
