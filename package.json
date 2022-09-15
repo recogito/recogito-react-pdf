@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@recogito/annotorious": "^2.7.6",
-    "@recogito/recogito-connections": "^0.1.1",
+    "@recogito/recogito-connections": "^0.1.2",
     "@recogito/recogito-js": "^1.7.1",
     "pdfjs-dist": "2.9.359",
     "react-icons": "^4.2.0",
