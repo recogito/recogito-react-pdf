@@ -113,7 +113,8 @@ const PaginatedViewer = props => {
             annotationMode={annotationMode} 
             onCreateAnnotation={onCreateAnnotation}
             onUpdateAnnotation={onUpdateAnnotation}
-            onDeleteAnnotation={onDeleteAnnotation} />
+            onDeleteAnnotation={onDeleteAnnotation} 
+            onCancelSelected={props.onCancelSelected} />
         </div>
       </main>
     </div>

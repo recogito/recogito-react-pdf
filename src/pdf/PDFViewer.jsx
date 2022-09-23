@@ -50,6 +50,10 @@ const PDFViewer = props => {
     props.onDeleteAnnotation && props.onDeleteAnnotation(a);
   }
 
+  const onCancelSelected = a => {
+    console.log('cancel');
+  }
+
   return pdf ? 
     props.mode === 'scrolling' ? 
       <EndlessViewer
@@ -59,7 +63,8 @@ const PDFViewer = props => {
         connections={connections}
         onCreateAnnotation={onCreateAnnotation}
         onUpdateAnnotation={onUpdateAnnotation}
-        onDeleteAnnotation={onDeleteAnnotation} /> :
+        onDeleteAnnotation={onDeleteAnnotation} 
+        onCancelSelected={onCancelSelected} /> :
       
       <PaginatedViewer 
         {...props}
@@ -68,7 +73,8 @@ const PDFViewer = props => {
         connections={connections}
         onCreateAnnotation={onCreateAnnotation}
         onUpdateAnnotation={onUpdateAnnotation}
-        onDeleteAnnotation={onDeleteAnnotation} />
+        onDeleteAnnotation={onDeleteAnnotation} 
+        onCancelSelected={onCancelSelected} />
     
     : null;
 

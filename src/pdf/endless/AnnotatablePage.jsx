@@ -113,6 +113,7 @@ const AnnotatablePage = props => {
     r.on('createAnnotation', onCreateAnnotation);
     r.on('updateAnnotation', onUpdateAnnotation);
     r.on('deleteAnnotation', onDeleteAnnotation);
+    r.on('cancelSelected', a => props.onCancelSelected(a));
     setRecogito(r);
 
     const anno = new Annotorious({

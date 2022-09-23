@@ -68,7 +68,8 @@ const EndlessViewer = props => {
               annotationMode={annotationMode} 
               onCreateAnnotation={props.onCreateAnnotation}
               onUpdateAnnotation={props.onUpdateAnnotation}
-              onDeleteAnnotation={props.onDeleteAnnotation} />
+              onDeleteAnnotation={props.onDeleteAnnotation} 
+              onCancelSelected={props.onCancelSelected} />
           )}
         </div>
       </main>

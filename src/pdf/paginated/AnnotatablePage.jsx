@@ -69,6 +69,7 @@ const AnnotatablePage = props => {
         r.on('createAnnotation', a => props.onCreateAnnotation(a));
         r.on('updateAnnotation', (a, p) => props.onUpdateAnnotation(a, p));
         r.on('deleteAnnotation', a => props.onDeleteAnnotation(a));
+        r.on('cancelSelected', a => props.onCancelSelected(a));
 
         // TODO split: text annotations only
         r.setAnnotations(text);
