@@ -83,6 +83,7 @@ const AnnotatablePage = props => {
         anno.on('createAnnotation', a => props.onCreateAnnotation(a));
         anno.on('updateAnnotation', (a, p) => props.onUpdateAnnotation(a, p));
         anno.on('deleteAnnotation', a => props.onDeleteAnnotation(a));
+        anno.on('cancelSelected', a => props.onCancelSelected(a));
 
         anno.setAnnotations(image);
         setAnno(anno);

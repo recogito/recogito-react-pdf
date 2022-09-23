@@ -124,6 +124,8 @@ const AnnotatablePage = props => {
     anno.on('createAnnotation', onCreateAnnotation);
     anno.on('updateAnnotation', onUpdateAnnotation);
     anno.on('deleteAnnotation', onDeleteAnnotation);
+    anno.on('cancelSelected', a => props.onCancelSelected(a));
+    
     setAnno(anno);
 
     r.on('selectAnnotation', () => anno.selectAnnotation());
