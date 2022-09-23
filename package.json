@@ -41,7 +41,7 @@
   "dependencies": {
     "@recogito/annotorious": "^2.7.8",
     "@recogito/recogito-connections": "^0.1.6",
-    "@recogito/recogito-js": "^1.8.0",
+    "@recogito/recogito-js": "^1.8.1",
     "pdfjs-dist": "2.9.359",
     "react-icons": "^4.2.0",
     "webpack": "^5.58.1",
