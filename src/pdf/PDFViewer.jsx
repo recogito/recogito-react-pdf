@@ -51,7 +51,7 @@ const PDFViewer = props => {
   }
 
   const onCancelSelected = a => {
-    console.log('cancel');
+    props.onCancelSelected && props.onCancelSelected(a);
   }
 
   return pdf ? 
