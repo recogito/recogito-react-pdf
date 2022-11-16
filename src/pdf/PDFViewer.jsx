@@ -22,16 +22,21 @@ const PDFViewer = props => {
   // Load PDF on mount
   useEffect(() => {
     // Init after DOM load
-    setConnections(new Connections([], { 
+    const conn = new Connections([], { 
       showLabels: true,
       vocabulary: props.config.relationVocabulary
-    }));
+    });
+
+    setConnections(conn);
 
     PDFJS.getDocument(props.url).promise
       .then(
         pdf => setPdf(pdf), 
         error => console.error(error)
       );
+
+    // Destroy connections layer on unmount
+    return () => conn.destroy();
   }, []);
 
   useEffect(() => {
