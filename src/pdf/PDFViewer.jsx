@@ -22,7 +22,10 @@ const PDFViewer = props => {
   // Load PDF on mount
   useEffect(() => {
     // Init after DOM load
-    setConnections(new Connections([], { showLabels: true }));
+    setConnections(new Connections([], { 
+      showLabels: true,
+      vocabulary: props.config.relationVocabulary
+    }));
 
     PDFJS.getDocument(props.url).promise
       .then(
