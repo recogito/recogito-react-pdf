@@ -41,8 +41,8 @@ window.onload = function() {
       config={config} 
       annotations={annotations} 
       onCreateAnnotation={onCreateAnnotation} 
-      onUpdateAnnotation={onCreateAnnotation} 
-      onDeleteAnnotation={onCreateAnnotation} />,
+      onUpdateAnnotation={onUpdateAnnotation} 
+      onDeleteAnnotation={onDeleteAnnotation} />,
     document.getElementById('app')
   );
     
