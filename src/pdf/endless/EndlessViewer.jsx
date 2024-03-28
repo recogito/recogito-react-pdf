@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { CgDebug, CgArrowsExpandDownRight } from 'react-icons/cg';
 import { RiImageEditFill } from 'react-icons/ri';
-
+import { BiSave } from "react-icons/bi";
 import AnnotatablePage from './AnnotatablePage';
+import { saveAs } from 'file-saver';
 
 const Range = maxValue => 
   Array.from(Array(maxValue).keys());
@@ -25,6 +26,12 @@ const EndlessViewer = props => {
       setAnnotationMode('ANNOTATION');
     else
       setAnnotationMode('IMAGE');
+  }
+
+  const saveAnnotationsToJson = () => {
+    const fileData = JSON.stringify(props.store.getAllAnnotations());
+    const blob = new Blob([fileData], { type: "application/json" });   
+    saveAs(blob, props.url + '-annotations.json'); 
   }
   
   return (
@@ -51,6 +58,13 @@ const EndlessViewer = props => {
             <RiImageEditFill />
           </span>
         </button>
+
+        <button
+          onClick={saveAnnotationsToJson}>
+          <span className="inner">
+            <BiSave />
+          </span>
+        </button>        
       </header>
 
       <main>

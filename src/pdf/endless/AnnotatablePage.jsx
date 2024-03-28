@@ -103,18 +103,17 @@ const AnnotatablePage = props => {
       mode: 'pre' 
     });
 
-    // Init Recogito Connections plugin
-    props.connections.register(r);
-
-    props.connections.on('createConnection', onCreateAnnotation);
-    props.connections.on('updateConnection', onUpdateAnnotation);  
-    props.connections.on('deleteConnection', onDeleteAnnotation);
-
     r.on('createAnnotation', onCreateAnnotation);
     r.on('updateAnnotation', onUpdateAnnotation);
     r.on('deleteAnnotation', onDeleteAnnotation);
     r.on('cancelSelected', a => props.onCancelSelected(a));
     setRecogito(r);
+
+    // Init Recogito Connections plugin
+    props.connections.register(r);
+    props.connections.on('createConnection', onCreateAnnotation);
+    props.connections.on('updateConnection', onUpdateAnnotation);  
+    props.connections.on('deleteConnection', onDeleteAnnotation);
 
     const anno = new Annotorious({
       ...config,
