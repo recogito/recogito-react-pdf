@@ -1,0 +1,80 @@
+[
+  {
+    "type": "Annotation",
+    "body": [
+      {
+        "type": "TextualBody",
+        "value": "Test #1",
+        "purpose": "commenting"
+      }
+    ],
+    "target": {
+      "selector": [
+        {
+          "type": "TextQuoteSelector",
+          "exact": "Type Specialization"
+        },
+        {
+          "type": "TextPositionSelector",
+          "start": 25,
+          "end": 44,
+          "page": 1
+        }
+      ]
+    },
+    "@context": "http://www.w3.org/ns/anno.jsonld",
+    "id": "#b5639d48-6b1d-4341-8211-a97dcb278865"
+  },
+  {
+    "type": "Annotation",
+    "body": [
+      {
+        "type": "TextualBody",
+        "value": "Test #2",
+        "purpose": "commenting"
+      }
+    ],
+    "target": {
+      "selector": [
+        {
+          "type": "TextQuoteSelector",
+          "exact": "Abstract"
+        },
+        {
+          "type": "TextPositionSelector",
+          "start": 598,
+          "end": 606,
+          "page": 1
+        }
+      ]
+    },
+    "@context": "http://www.w3.org/ns/anno.jsonld",
+    "id": "#6dc3dc53-056c-4178-9954-3e6deb6b4675"
+  },
+  {
+    "type": "Annotation",
+    "body": [
+      {
+        "type": "TextualBody",
+        "value": "Test #3",
+        "purpose": "commenting"
+      }
+    ],
+    "target": {
+      "selector": [
+        {
+          "type": "TextQuoteSelector",
+          "exact": "Figure 1. Sample program:"
+        },
+        {
+          "type": "TextPositionSelector",
+          "start": 4012,
+          "end": 4037,
+          "page": 2
+        }
+      ]
+    },
+    "@context": "http://www.w3.org/ns/anno.jsonld",
+    "id": "#068333e8-2616-4a90-883d-27c8595a806a"
+  }
+]

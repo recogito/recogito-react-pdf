@@ -51,4 +51,8 @@ export default class AnnotationStore {
     return [...annotationsOnPage, ...linkedRelations ];
   }
 
+  getAllAnnotations() {
+    return [...this._annotations];
+  }
+
 }
